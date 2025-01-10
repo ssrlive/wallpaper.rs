@@ -26,6 +26,15 @@ dirs = "5"
 winapi = { version = "0.3", features = ["winuser"] }
 winreg = "0.53"
 
+[dev-dependencies]
+rand = "0.8"
+clap = { version = "4", features = ["derive"] }
+
 [features]
 from_url = ["dirs", "reqwest"]
 cron = []
+
+[[example]]
+name = "random_wallpaper"
+path = "examples/random_wallpaper.rs"
+required-features = ["cron"]
