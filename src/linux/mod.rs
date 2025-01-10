@@ -102,7 +102,7 @@ where
         ),
         _ => {
             if let Ok(mut child) = Command::new("swaybg")
-                .args(&["-i", path.as_ref().to_str().ok_or(Error::InvalidPath)?])
+                .args(["-i", path.as_ref().to_str().ok_or(Error::InvalidPath)?])
                 .spawn()
             {
                 child.stdout = None;
