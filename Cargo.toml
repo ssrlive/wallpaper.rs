@@ -28,3 +28,4 @@ winreg = "0.9"
 
 [features]
 from_url = ["dirs", "reqwest"]
+cron = []

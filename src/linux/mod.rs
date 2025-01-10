@@ -51,6 +51,27 @@ where
         return gnome::set(&path);
     }
 
+    #[cfg(feature = "cron")]
+    {
+        std::env::set_var("DISPLAY", ":0");
+        let user_id_str = get_stdout("id", &["-u"])?;
+        let dbus_address = format!("unix:path=/run/user/{}/bus", user_id_str.trim());
+        std::env::set_var("DBUS_SESSION_BUS_ADDRESS", dbus_address.clone());
+
+        let color_scheme = get_stdout(
+            "gsettings",
+            &["get", "org.gnome.desktop.interface", "color-scheme"],
+        )?;
+        let org = "org.gnome.desktop.background";
+        let mode = if color_scheme.trim() == "'prefer-dark'" {
+            "picture-uri-dark"
+        } else {
+            "picture-uri"
+        };
+        let file = &enquote::enquote('"', &format!("file://{}", &path));
+        run("gsettings", &["set", org, mode, file])?;
+    }
+
     match desktop.as_str() {
         "KDE" => kde::set(&path),
         "X-Cinnamon" => run(
