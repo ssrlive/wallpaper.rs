@@ -1,15 +1,14 @@
 use crate::{Mode, Result};
+use ::core::ffi::c_void;
 use std::ffi::OsStr;
 use std::io;
 use std::iter;
 use std::mem;
 use std::os::windows::ffi::OsStrExt;
-use winapi::ctypes::c_void;
-use winapi::um::winuser::SystemParametersInfoW;
-use winapi::um::winuser::SPIF_SENDCHANGE;
-use winapi::um::winuser::SPIF_UPDATEINIFILE;
-use winapi::um::winuser::SPI_GETDESKWALLPAPER;
-use winapi::um::winuser::SPI_SETDESKWALLPAPER;
+use windows_sys::Win32::UI::WindowsAndMessaging::{
+    SystemParametersInfoW, SPIF_SENDCHANGE, SPIF_UPDATEINIFILE, SPI_GETDESKWALLPAPER,
+    SPI_SETDESKWALLPAPER,
+};
 use winreg::enums::*;
 use winreg::RegKey;
 

@@ -23,7 +23,7 @@ rust-ini = "0.21"
 dirs = "5"
 
 [target.'cfg(windows)'.dependencies]
-winapi = { version = "0.3", features = ["winuser"] }
+windows-sys = { version = "0.59", features = ["Win32_UI_WindowsAndMessaging"] }
 winreg = "0.53"
 
 [dev-dependencies]
