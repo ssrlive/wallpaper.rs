@@ -3,7 +3,7 @@ mod kde;
 mod lxde;
 pub(crate) mod xfce;
 
-use crate::{get_stdout, run, Error, Mode, Result};
+use crate::{Error, Mode, Result, get_stdout, run};
 use std::{env, path::Path, process::Command};
 
 #[cfg(feature = "from_url")]
@@ -53,10 +53,10 @@ where
 
     #[cfg(feature = "cron")]
     {
-        std::env::set_var("DISPLAY", ":0");
+        unsafe { std::env::set_var("DISPLAY", ":0") };
         let user_id_str = get_stdout("id", &["-u"])?;
         let dbus_address = format!("unix:path=/run/user/{}/bus", user_id_str.trim());
-        std::env::set_var("DBUS_SESSION_BUS_ADDRESS", dbus_address.clone());
+        unsafe { std::env::set_var("DBUS_SESSION_BUS_ADDRESS", dbus_address.clone()) };
 
         let color_scheme = get_stdout(
             "gsettings",

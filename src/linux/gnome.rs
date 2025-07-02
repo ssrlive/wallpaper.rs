@@ -1,5 +1,5 @@
 use super::parse_dconf;
-use crate::{run, Mode, Result};
+use crate::{Mode, Result, run};
 
 #[inline]
 pub fn is_compliant(desktop: &str) -> bool {

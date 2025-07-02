@@ -6,11 +6,10 @@ use std::iter;
 use std::mem;
 use std::os::windows::ffi::OsStrExt;
 use windows_sys::Win32::UI::WindowsAndMessaging::{
-    SystemParametersInfoW, SPIF_SENDCHANGE, SPIF_UPDATEINIFILE, SPI_GETDESKWALLPAPER,
-    SPI_SETDESKWALLPAPER,
+    SPI_GETDESKWALLPAPER, SPI_SETDESKWALLPAPER, SPIF_SENDCHANGE, SPIF_UPDATEINIFILE,
+    SystemParametersInfoW,
 };
-use winreg::enums::*;
-use winreg::RegKey;
+use winreg::{RegKey, enums::*};
 
 #[cfg(feature = "from_url")]
 use crate::download_image;

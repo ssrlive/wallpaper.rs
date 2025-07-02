@@ -1,4 +1,4 @@
-use crate::{run, Error, Mode, Result};
+use crate::{Error, Mode, Result, run};
 use ini::Ini;
 use std::env;
 
@@ -7,7 +7,7 @@ pub fn get() -> Result<String> {
     let session = env::var("DESKTOP_SESSION").unwrap_or_else(|_| "LXDE".into());
     let path = dirs::config_dir()
         .ok_or(Error::NoConfigDir)?
-        .join(format!("pcmanfm/{}/desktop-items-0.conf", session));
+        .join(format!("pcmanfm/{session}/desktop-items-0.conf"));
     let ini = Ini::load_from_file(path)?;
     Ok(ini
         .section(Some("*"))

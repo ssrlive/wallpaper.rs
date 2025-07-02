@@ -19,9 +19,9 @@ fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>> {
         .map(|r| r.map(|d| d.path()).map_err(|e| e.to_string()))
         .collect::<Result<_, _>>()?;
 
-    use rand::seq::SliceRandom;
+    use rand::prelude::IndexedRandom;
     let selected_wallpaper = paths
-        .choose(&mut rand::thread_rng())
+        .choose(&mut rand::rng())
         .ok_or("No wallpaper found")?
         .to_str()
         .ok_or("Invalid path")?;

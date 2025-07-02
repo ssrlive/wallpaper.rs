@@ -1,4 +1,4 @@
-use crate::{get_stdout, run, Mode, Result};
+use crate::{Mode, Result, get_stdout, run};
 
 #[cfg(feature = "from_url")]
 use crate::download_image;

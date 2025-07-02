@@ -1,7 +1,7 @@
 [package]
 name = "wallpaper"
 version = "4.0.0"
-edition = "2018"
+edition = "2024"
 authors = ["reujab <reujab@gmail.com>"]
 description = "Gets and sets the desktop wallpaper/background."
 repository = "https://github.com/reujab/wallpaper.rs"
@@ -11,7 +11,7 @@ categories = ["api-bindings"]
 license = "Unlicense"
 
 [dependencies]
-dirs = { version = "5", optional = true }
+dirs = { version = "6", optional = true }
 thiserror = "2"
 reqwest = { version = "0.12", optional = true, features = ["blocking"] }
 
@@ -20,14 +20,14 @@ enquote = "1"
 
 [target.'cfg(all(unix, not(target_os = "macos")))'.dependencies]
 rust-ini = "0.21"
-dirs = "5"
+dirs = "6"
 
 [target.'cfg(windows)'.dependencies]
-windows-sys = { version = "0.59", features = ["Win32_UI_WindowsAndMessaging"] }
-winreg = "0.53"
+windows-sys = { version = "0.60", features = ["Win32_UI_WindowsAndMessaging"] }
+winreg = "0.55"
 
 [dev-dependencies]
-rand = "0.8"
+rand = "0.9"
 clap = { version = "4", features = ["derive"] }
 
 [features]
